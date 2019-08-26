@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Estudiantes extends Migration
+class CrearTableLaboratorios extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class Estudiantes extends Migration
      */
     public function up()
     {
-        Schema::create('estudiantes', function (Blueprint $table) {
-            $table->bigIncrements('id');
-             $table->integer('Cedula');
-            $table->string('Nombre');
-            $table->string('Apellido');
+        Schema::create('laboratorios', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class Estudiantes extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estudiantes');
+        Schema::dropIfExists('laboratorios');
     }
 }
