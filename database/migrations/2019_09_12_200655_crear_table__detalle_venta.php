@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrearTableFarmacos extends Migration
+class CrearTableDetalleVenta extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CrearTableFarmacos extends Migration
      */
     public function up()
     {
-        Schema::create('farmacos', function (Blueprint $table) {
+        Schema::create('detalles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
+            $table->json('producto');
             $table->string('descripcion');
-            $table->integer('laboratorio_id')->unsigned();
-
-            $table->foreign('laboratorio_id')
+            $table->integer('venta_id')->unsigned();
+            $table->foreign('venta_id')
             ->references('id')
-            ->on('laboratorios');
-            
+            ->on('ventas');
             $table->timestamps();
         });
     }
@@ -34,6 +32,6 @@ class CrearTableFarmacos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('farmacos');
+        //
     }
 }

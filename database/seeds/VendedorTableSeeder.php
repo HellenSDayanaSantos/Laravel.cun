@@ -1,7 +1,8 @@
-<?php
+   <?php
 
 use Illuminate\Database\Seeder;
 use App\Models\Vendedor;
+use App\Models\Detalle;
 
 class VendedorTableSeeder extends Seeder
 {
@@ -12,6 +13,15 @@ class VendedorTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Vendedor::class, 3)->create(); 
+       $vendedores = factory(App\Models\Vendedor::class, 3)
+       ->create()
+       ->each(function($vendedor){
+             $venta = factory(App\Models\Venta::class)->make();
+             $vendedor->ventas()->save($venta);
+             $venta->detalles()->save(factory(App\Models\Detalle::class)->make());
+                   
+       });
     }
 }
+
+

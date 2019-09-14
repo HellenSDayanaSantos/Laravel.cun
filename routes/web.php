@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/vendedor', 'VendedorController@index');
+Route::get('/venta'   , 'VentaController@index');
+Route::get('/detalle' , 'DetalleController@index');
+
+   
